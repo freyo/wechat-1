@@ -95,11 +95,11 @@ class Application extends ServiceContainer
      *
      * @return string
      */
-    public function getPreAuthorizationUrl(string $callbackUrl): string
+    public function getPreAuthorizationUrl(string $callbackUrl, string $preAuthCode = null): string
     {
         $queries = [
             'component_appid' => $this['config']['app_id'],
-            'pre_auth_code' => $this->createPreAuthorizationCode()['pre_auth_code'],
+            'pre_auth_code' => $preAuthCode ?? $this->createPreAuthorizationCode()['pre_auth_code'],
             'redirect_uri' => $callbackUrl,
         ];
 
